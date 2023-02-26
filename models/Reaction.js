@@ -30,5 +30,4 @@ const reactionSchema = new Schema(
   }
 );
 
-// module.exports = reactionSchema;
 export default reactionSchema;
