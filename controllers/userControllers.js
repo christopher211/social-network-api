@@ -1,17 +1,18 @@
 import Thought from "../models/Thought.js";
 import User from "../models/User.js";
 
-async function getAllUsers(req, res) {
+const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({}).populate({ path: "thoughts" });
 
     res.status(200).json(users);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function getUserById(req, res) {
+const getUserById = async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params.id }).populate({
       path: "thoughts",
@@ -23,21 +24,24 @@ async function getUserById(req, res) {
       res.status(200).json(user);
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function createUser(req, res) {
+// Create a new user
+const createUser = async (req, res) => {
   try {
-    const newUser = User.create(req.body);
+    const user = await User.create(req.body);
 
-    res.status(200).json(newUser);
+    res.status(200).json(user);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function updateUser(req, res) {
+const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.params.id },
@@ -51,28 +55,30 @@ async function updateUser(req, res) {
       res.status(200).json(updatedUser);
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function deleteUser(req, res) {
+// Delete user and all thoughts associated with it
+const deleteUser = async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete({ _id: req.params.id });
 
     if (!deletedUser) {
       res.status(404).json({ message: "User not found" });
     } else {
-      const userThoughts = await Thought.deleteMany({
-        username: deletedUser.username,
-      });
-      res.status(200).json(deletedUser);
+      await Thought.deleteMany({ _id: { $in: deletedUser.thoughts } });
+
+      res.status(200).json({ message: "User and thoughts deleted" });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function addFriend(req, res) {
+const addFriend = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.id },
@@ -86,11 +92,12 @@ async function addFriend(req, res) {
       res.status(200).json(user);
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
-async function removeFriend(req, res) {
+const removeFriend = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.id },
@@ -104,9 +111,10 @@ async function removeFriend(req, res) {
       res.status(200).json(user);
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
 export {
   getAllUsers,

@@ -8,6 +8,7 @@ mongoose.connect(connectionString, {
   useUnifiedTopology: true,
 });
 
+mongoose.set("strictQuery", false);
 const connection = mongoose.connection;
 
 export default connection;

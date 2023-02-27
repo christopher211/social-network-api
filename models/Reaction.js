@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 const reactionSchema = new Schema(
   {
