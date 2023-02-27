@@ -16,7 +16,7 @@ This is a simple back end using MongoDB and Mongoose to create a social network 
 
 - The repo of the tool: [Source Code](https://github.com/christopher211/social-network-api)
 
-<!-- - Here is the link of demo video: [Google drive](https://drive.google.com/file/d/10LYD2INijLpGZgJqXcKHm62bVBYZoeRI/view?usp=share_link) -->
+- Here is the link of demo video: [Google drive](https://drive.google.com/file/d/1Ko632y5KdhCoh5Vi4gDrw7qNOkq-jEMO/view?usp=sharing)
 
 ## User Story
 
@@ -41,3 +41,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ```
 
 ## Preview
+
+![An example image about create thought api](./demo/preview1.png)
+
+![An example image about add reaction to thought](./demo/preview2.png)
